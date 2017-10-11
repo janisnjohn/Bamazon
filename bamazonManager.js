@@ -86,6 +86,7 @@ function viewInventory(){
 	start();
 };
 
+//adding inventory function
 function addInventory(){
 
 inquirer.prompt([
@@ -119,14 +120,13 @@ inquirer.prompt([
 	}
 	
 	]).then(function(answer){
-	let id = answer.action;
-	let qty = answer.qty;
-	connection.query("SELECT * FROM products WHERE id = '" + id +"'", function(err, result, fields) {
+	var id = answer.action;
+	var qty = parseInt(answer.qty);
+	connection.query("SELECT stock_quantity FROM products WHERE ? ", {id: id}, function(err, result, fields) {
 	if (err) throw err;	
-	
-	console.log("this is sum" + sum);
 	for (var i=0; i<result.length; i++){
-	let sum = qty + result[i].stock_quantity;
+	console.log("this is what is in database " + result[i].stock_quantity);
+	var sum = qty + result[i].stock_quantity;
 	connection.query("UPDATE products SET? WHERE? ", [
 			{      			
       			stock_quantity: sum
@@ -144,4 +144,95 @@ inquirer.prompt([
 }
 });
 });
+};
+
+function addProduct(){
+
+inquirer.prompt([
+	{
+		name: "action",
+		message: "Which Inventory ID would you like to add?",
+		type: "input",
+    	validate: function(input){
+      	  	if(input === ''){
+        	console.log('Try again!')
+        	return false;
+      		}
+      		else {
+        	return true;
+      		}
+		}
+	},
+	{
+		name: "name",
+		message: "What is the product name?",
+		type: "input",
+    	validate: function(input){
+      	  	if(input === ''){
+        	console.log('Try again!')
+        	return false;
+      		}
+      		else {
+        	return true;
+      		}
+		}
+	},
+	{
+		name: "department",
+		message: "What is the department that this product belongs too?",
+		type: "input",
+    	validate: function(input){
+      	  	if(input === ''){
+        	console.log('Try again!')
+        	return false;
+      		}
+      		else {
+        	return true;
+      		}
+		}
+	},
+	{
+		name: "price",
+		message: "What is the price you want for this item?",
+		type: "input",
+    	validate: function(input){
+      	  	if(input === ''){
+        	console.log('Try again!')
+        	return false;
+      		}
+      		else {
+        	return true;
+      		}
+		}
+	},
+	{
+		name: "qty",
+		message: "How many of these items do you have in stock?",
+		type: "input",
+    	validate: function(input){
+      	  	if(input === ''){
+        	console.log('Try again!')
+        	return false;
+      		}
+      		else {
+        	return true;
+      		}
+		}
+	}
+	
+	]).then(function(answer){
+	var id = (answer.action);
+	var name = answer.name;
+	var department = answer.department;
+	var price = parseInt(answer.price);
+	var qty = parseInt(answer.qty);
+	connection.connect(function(err){
+		if (err) throw err;
+	})
+	connection.query("INSERT INTO `products`(id, product_name, department_name, price, stock_quantity) VALUES('"+id+"', '"+name+"', '"+department+"', "+price+", "+qty+") ", function(err, result){
+		if (err) throw err;
+        console.log("New Product was successfully added!");
+        console.log("Id: " +id + "\r\nProduct Name:  " + name + "\r\nDepartment: " +department + "\r\nPrice: $"+price+".00"+ "\r\nQTY: " + qty);
+	});
+    });
 };
