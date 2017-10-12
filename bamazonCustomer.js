@@ -88,7 +88,7 @@ function start(){
       	);
 
       } else {
-      	console.log("QTY available is: " + result[i].stock_quantity + " You can only buy as much as what is available.  Please choose another ID and quantity.");
+      	console.log("QTY available is " + result[i].stock_quantity + ". You can only buy as much as what is available.  Please choose another ID and quantity.");
       	start();
       }
 

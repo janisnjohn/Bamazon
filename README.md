@@ -1,19 +1,21 @@
 # Bamazon
 
+In this homework assignment, I created an Amazon-like storefront with the MySQL skills and Node.js.
+
 bamazon database has a products table that includes the following fields: 
-*item_id (unique id for each product), 
-product_name (Name of the product),
-department_name
-price (cost to customer)
-stock_quantity (how much of the product is available in stores)*
+ 1. item_id (unique id for each product)
+  2. product_name (Name of the product)
+  3. department_name
+  4. price (cost to customer)
+  5. stock_quantity (how much of the product is available in stores)
 
 I have included 10 different items in the database saved in mySQL.
 
-**How to run the application**
+**This is how you can run the application.**
 
 Run bamazonCustomer.js in node.  
 
-It will list of items with :
+It will then list items with:
 
 1. Unique ID for each product.
 2. Name of product
@@ -28,11 +30,12 @@ Then you will be prompted two messages.
 
 Input the ID and QTY and the app will deduct from inventory and give you the total cost of the items you bought.
 
-The video for bamazonCustomer.js file is below
+The video for bamazonCustomer.js file is below please clinck links to view youtube video.
 
-<video controls="controls">
-  <source type="video/mp4" src="./bamazonCustomerVideo.mp4"></source>
-  <p>Your browser does not support the video element.</p>
-</video>
+https://youtu.be/j1YyrBPg5HY automatic!
+[GitHub](https://youtu.be/j1YyrBPg5HY)
 
+The video link below shows the bamazonManager.js demo.  Pleaes click the link for a brief demo.
 
+https://youtu.be/OLWt0ISARMM automatic!
+[GitHub](https://youtu.be/OLWt0ISARMM)
